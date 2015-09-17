@@ -23,7 +23,9 @@ class TestPlayer2(unittest.TestCase):
         array = [[(0,0),(-1,-3)],[(-3,-1),(1,1)]]
         self.assertTrue(player2_is_strongly_dominated(array, 0))
         array = [[(0,5),(-1,-3)],[(-3,6),(1,1)]]
-        self.assertFalse(player2_is_strongly_dominated(array, 0))
+        self.assertTrue(player2_is_strongly_dominated(array, 0))
+        array = [[(0,5),(-1,10)],[(-3,6),(1,1)]]
+        self.assertTrue(player2_is_strongly_dominated(array, 0))
 
     def test_get_player1_payload(self):
         array = [[(0,0),(-1,-2)],[(-4,-1),(1,1)]]
