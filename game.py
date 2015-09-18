@@ -2,7 +2,7 @@ def player2_is_strongly_dominated(array, col):
     payload_compare = get_player2_payload_col(array, col)
     payload_p2 = get_player2_payload_col(array, 1)
     for i in range(len(payload_compare)):
-        if compare_to(payload_compare[i], payload_p2) == -1:
+        if compare_to(payload_compare[i], payload_p2[i]) == -1:
             return True
     return False
 
