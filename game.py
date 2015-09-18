@@ -2,18 +2,15 @@
     Author: George Acevedo
     Date: 17 September 2015
 """
-def player2_is_strongly_dominated(array, col):
-    """
-        Compares the col with each col in the array.
-        Returns True if the col is dominated by another strategy.
-        Returns False otherwise.
-    """
-    payload_compare = get_player2_payload_col(array, col)
-    payload_p2 = get_player2_payload_col(array, col+1)
-    if compare_payload(payload_compare, payload_p2) == True:
-        return True
-    return False
 
+def player2_is_strongly_dominated_all(array, col):
+    payload_compare = get_player2_payload_col(array, col)
+    for j in range(col, len(array[0])-1): #for each col found in the first row, get the payloads#only testing, so col+1 so start at 1. len = 3, so len-1=2, stop when you get to col 2
+        payload_p2 = get_player2_payload_col(array, j+1)
+        if compare_payload(payload_compare, payload_p2) == True:
+            return True
+    return False
+    
 def player1_is_strongly_dominated(array, row):
     """
         Compares the row with each row in the array.
@@ -26,16 +23,17 @@ def player1_is_strongly_dominated(array, row):
         return True
     return False
 
-def get_player2_payload_col(array, col):
+def player2_is_strongly_dominated(array, col):
     """
-        Returns the payload for p2 for a col.
+        Compares the col with each col in the array.
+        Returns True if the col is dominated by another strategy.
+        Returns False otherwise.
     """
-    payload_array = []
-    for i in range(len(array)):
-        payload = array[i][col]
-        payload_p2 = payload[1]
-        payload_array.append(payload_p2)
-    return payload_array
+    payload_compare = get_player2_payload_col(array, col)
+    payload_p2 = get_player2_payload_col(array, col+1)
+    if compare_payload(payload_compare, payload_p2) == True:
+        return True
+    return False
 
 def get_player1_payload_row(array, row):
     """
@@ -48,16 +46,15 @@ def get_player1_payload_row(array, row):
         payload_array.append(payload_p1)
     return payload_array
 
-def get_playe2r_payload(array):
+def get_player2_payload_col(array, col):
     """
-        Returns all of the payloads in a array for p2.
+        Returns the payload for p2 for a col.
     """
     payload_array = []
     for i in range(len(array)):
-        for j in range(len(array)):
-            payload = array[i][j]
-            payload_p2 = payload[1]
-            payload_array.append(payload_p2)
+        payload = array[i][col]
+        payload_p2 = payload[1]
+        payload_array.append(payload_p2)
     return payload_array
 
 def get_player1_payload(array):
@@ -70,6 +67,18 @@ def get_player1_payload(array):
             payload = array[i][j]
             payload_p1 = payload[0]
             payload_array.append(payload_p1)
+    return payload_array
+
+def get_playe2_payload(array):
+    """
+        Returns all of the payloads in a array for p2.
+    """
+    payload_array = []
+    for i in range(len(array)):
+        for j in range(len(array)):
+            payload = array[i][j]
+            payload_p2 = payload[1]
+            payload_array.append(payload_p2)
     return payload_array
 
 def compare_payload(pay1, pay2):
