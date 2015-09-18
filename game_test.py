@@ -2,12 +2,12 @@ import unittest
 from game import *
 
 class TestPlayer2(unittest.TestCase):
-    def test_get_player_2_payload(self):
+    def test_get_player1_payload(self):
         array = [[(0,0),(-1,-3)],[(-3,-1),(1,1)]]
         expected_val = [0,-3,-1,1]
-        self.assertEqual(get_player2_payload(array), expected_val)
+        self.assertEqual(get_player2_payload(array,), expected_val)
 
-    def test_get_player_2_payload_col(self):
+    def test_get_player2_payload_col(self):
         array = [[(0,0),(-1,-3)],[(-3,-1),(1,1)]]
         expected_val = [0,-1]
         self.assertEqual(get_player2_payload_col(array, 0), expected_val)

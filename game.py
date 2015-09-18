@@ -48,7 +48,7 @@ def get_player1_payload_row(array, row):
         payload_array.append(payload_p1)
     return payload_array
 
-def get_player_payload(array):
+def get_playe2r_payload(array):
     """
         Returns all of the payloads in a array for p2.
     """
