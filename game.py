@@ -3,6 +3,42 @@
     Date: 17 September 2015
 """
 
+def player2_is_strongly_dominated_all_loop(array, col):
+    """
+        Compares the col with each col in the array.
+        Returns True if the col is dominated by another strategy.
+        Returns False otherwise.
+    """
+    payload_compare = get_player2_payload_col(array, col)
+    for j in range(len(array[0])-1): #for each col in the first row
+        payload_p2 = get_player2_payload_col(array, j+1) #so go to the right most col of the given col. and the len is 3, so stop at col 2
+        if compare_payload(payload_compare, payload_p2) == True:
+            return True
+    if col >= 1: #want to check the columns before the col
+        for j in range(0, col): #for each col in the first row
+            payload_p2 = get_player2_payload_col(array, j) #start at 0
+            if compare_payload(payload_compare, payload_p2) == True:
+                return True
+    return False
+
+def player1_is_strongly_dominated_all_loop(array, row):
+    """
+        Compares the col with each col in the array.
+        Returns True if the col is dominated by another strategy.
+        Returns False otherwise.
+    """
+    payload_compare = get_player1_payload_row(array, row)
+    for i in range(row, len(array)-1): #for each row in the first row
+        payload_p1 = get_player1_payload_row(array, i+1) #so go to the right most row of the given col. and the len is 3, so stop at row 2
+        if compare_payload(payload_compare, payload_p1) == True:
+            return True
+    if row >= 1: #want to check the columns before the col
+        for j in range(0, row): #for each col in the first row
+            payload_p1 = get_player1_payload_row(array, j) #start at 0
+            if compare_payload(payload_compare, payload_p1) == True:
+                return True
+    return False
+
 def player2_is_strongly_dominated_all(array, col):
     """
         Compares the col with each col in the array.
