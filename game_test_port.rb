@@ -12,7 +12,7 @@ class TestGamePort < Test::Unit::TestCase
 	
   def test_compare_payload
     assert_equal(false, compare_payload([20,8,6,4,2],[9,8,7,6,5]))
-	assert_equal(true, compare_payload([0,0,0,0,0],[9,8,7,6,5]))
+    assert_equal(true, compare_payload([0,0,0,0,0],[9,8,7,6,5]))
   end		
 end
 

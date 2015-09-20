@@ -7,11 +7,11 @@ def get_player1_payload(array)
   begin 
     begin 
 	  payload = array[i][j]
-	    puts "payload = #{payload}"
-		payload_p1 = payload[0]
-		payload_array << payload_p1
-		j +=1
-		puts "j= #{j}"
+	  puts "payload = #{payload}"
+	  payload_p1 = payload[0]
+	  payload_array << payload_p1
+	  j +=1
+	  puts "j= #{j}"
 	end while j < array[i].length
 	i += 1
 	j = 0
