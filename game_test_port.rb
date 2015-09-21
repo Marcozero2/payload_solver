@@ -4,68 +4,68 @@ require_relative"game_port"
 require "test/unit"
 
 class TestGamePort < Test::Unit::TestCase 
-  def test_player2_is_strongly_dominated_all_loop_3_by_3_array_col_0_fail
+  def test_player2_is_strongly_dominated_3_by_3_array_col_0_fail
 		ary = [[[0,1],[2,3],[1,0]], [[2,3],[1,1],[3,0]], [[1,1],[5,3],[2,0]]]
-		assert_not_equal(true, player2_is_strongly_dominated_all_loop(ary, 0))
+		assert_not_equal(true, player2_is_strongly_dominated(ary, 0))
 	end
 	
-	def test_player2_is_strongly_dominated_all_loop_3_by_3_array_col_0
+	def test_player2_is_strongly_dominated_3_by_3_array_col_0
 		ary = [[[0,1],[2,3],[1,20]], [[2,3],[1,1],[3,20]], [[1,1],[5,3],[2,20]]]
-    assert_equal(true, player2_is_strongly_dominated_all_loop(ary, 0))
+    assert_equal(true, player2_is_strongly_dominated(ary, 0))
   end
 
-  def test_player1_is_strongly_dominated_all_loop_3_by_3_array_col_1
-    ary = [[[5,1],[3,1],[5,1]],[[4,1],[2,1],[0,1]],[[4,1],[3,1],[4,1]]]
-    assert_equal(true, player1_is_strongly_dominated_all_loop(ary, 1))
+  def test_player1_is_strongly_dominated_3_by_3_array_col_1
+    ary = [[[5,1],[3,1],[5,1]], [[4,1],[2,1],[0,1]], [[4,1],[3,1],[4,1]]]
+    assert_equal(true, player1_is_strongly_dominated(ary, 1))
   end 
    
-  def test_player1_is_strongly_dominated_all_loop_3_by_3_array_col_1_fail
-		ary = [[[0,1],[3,1],[5,1]],[[4,1],[2,1],[0,1]],[[4,1],[3,1],[4,1]]]
-		assert_not_equal(true, player1_is_strongly_dominated_all_loop(ary, 1))
+  def test_player1_is_strongly_dominated_3_by_3_array_col_1_fail
+		ary = [[[0,1],[3,1],[5,1]], [[4,1],[2,1],[0,1]], [[4,1],[3,1],[4,1]]]
+		assert_not_equal(true, player1_is_strongly_dominated(ary, 1))
 	end
 	
-	def test_player1_is_strongly_dominated_all_loop_3_by_3_array_col_2
-		ary = [[[0,1],[3,1],[5,1]],[[4,1],[2,1],[0,1]],[[-1,1],[-1,1],[-1,1]]]
-    assert_equal(true, player1_is_strongly_dominated_all_loop(ary, 2))
+	def test_player1_is_strongly_dominated_3_by_3_array_col_2
+		ary = [[[0,1],[3,1],[5,1]], [[4,1],[2,1],[0,1]], [[-1,1],[-1,1],[-1,1]]]
+    assert_equal(true, player1_is_strongly_dominated(ary, 2))
   end
 	
-	def test_player1_is_strongly_dominated_all_loop_3_by_3_array_col_2_fail
-		ary = [[[0,1],[3,1],[5,1]],[[4,1],[2,1],[0,1]],[[4,1],[3,1],[4,1]]]
-		assert_not_equal(true, player1_is_strongly_dominated_all_loop(ary, 2))
+	def test_player1_is_strongly_dominated_3_by_3_array_col_2_fail
+		ary = [[[0,1],[3,1],[5,1]], [[4,1],[2,1],[0,1]], [[4,1],[3,1],[4,1]]]
+		assert_not_equal(true, player1_is_strongly_dominated(ary, 2))
   end
   
 	def test_get_player2_payload_col_2_by_2_array_col_0
-		ary = [[[0,0],[-1,3]],[[-3,-1],[1,1]]]
+		ary = [[[0,0],[-1,3]], [[-3,-1],[1,1]]]
 		val = [0,-1]
 		assert_equal(val, get_player2_payload_col(ary, 0))
 	end
 	
 	def test_get_player1_payload_row_2_by_2_array_col_0
-		ary = [[[0,0],[-1,-2]],[[-4,-1],[1,1]]]
+		ary = [[[0,0],[-1,-2]], [[-4,-1],[1,1]]]
 		val = [0,-1]
     assert_equal(val, get_player1_payload_row(ary, 0))
 	end
   
   def test_get_player1_payload_row_2_by_2_array_col_0_fail
-		ary = [[[0,0],[-1,-2]],[[-4,-1],[1,1]]]
+		ary = [[[0,0],[-1,-2]], [[-4,-1],[1,1]]]
     val = [0,-2]
     assert_not_equal(val, get_player1_payload_row(ary, 0))
-   end
+  end
    
-   def test_get_player1_payload_row_3_by_3_array_col_0
-    ary = [[[0, 1],[2, 3],[1, 0]],[[2, 3],[1, 1],[3, 0]],[[1, 1],[5, 3],[2, 0]]]
+  def test_get_player1_payload_row_3_by_3_array_col_0
+    ary = [[[0,1], [2,3],[1,0]], [[2,3],[1,1],[3,0]], [[1,1],[5,3],[2,0]]]
     val = [0, 2, 1]
     assert_equal(val, get_player1_payload_row(ary, 0))
-   end
+  end
    
   def test_get_player1_payload_row_3_by_3_array_col_2
-		ary = [[[0, 1],[2, 3],[1, 0]],[[2, 3],[1, 1],[3, 0]],[[1, 1],[5, 3],[2, 0]]]
+		ary = [[[0,1],[2,3],[1,0]], [[2,3],[1,1],[3,0]], [[1,1],[5,3],[2,0]]]
     val = [1, 5, 2]
     assert_equal(val, get_player1_payload_row(ary, 2))
   end
 	
 	def test_get_player1_payload_2_by_2_array
-		ary = [[0, 0], [-1, -2]], [[-4, -1] ,[1, 1]]
+		ary = [[0,0], [-1,-2]], [[-4,-1] ,[1,1]]
 		val = [0, -1, -4, 1]
 		assert_equal(val, get_player1_payload(ary))
 	end
@@ -77,7 +77,7 @@ class TestGamePort < Test::Unit::TestCase
 	end
 	
 	def test_get_player2_payload_2_by_2_array
-		ary = [[0, 0], [-1, -2]], [[-4, -1] ,[1, 1]]
+		ary = [[0,0], [-1,-2]], [[-4,-1] ,[1,1]]
 		val = [0, -2, -1, 1]
 		assert_equal(val, get_player2_payload(ary))
 	end
@@ -101,28 +101,26 @@ class TestGamePort < Test::Unit::TestCase
   end
   
   def test_compare_to_nil
-		assert_equal(-1, compare_to(nil, nil))
+    assert_equal(-1, compare_to(nil, nil))
   end
 	
   def test_compare_payload_false_fail
-   assert_not_equal(true, compare_payload([20,8,6,4,2],[9,8,7,6,5]))
+    assert_not_equal(true, compare_payload([20, 8, 6, 4, 2], [9, 8, 7, 6, 5]))
   end
   
   def test_compare_payload_true
-		assert_equal(true, compare_payload([0,0,0,0,0],[9,8,7,6,5]))
+    assert_equal(true, compare_payload([0, 0 ,0, 0, 0], [9, 8, 7, 6, 5]))
   end
   
   def test_compare_payload_true_empty
-		assert_equal(true, compare_payload([],[]))
+	  assert_equal(true, compare_payload([], []))
   end
   
   def test_compare_payload_true_nil
-		assert_equal(true, compare_payload(nil,nil))
+	  assert_equal(true, compare_payload(nil, nil))
   end
   
   def test_compare_payload_true_list_nil
-		assert_equal(true, compare_payload([nil],[nil]))
+	  assert_equal(true, compare_payload([nil], [nil]))
   end
 end
-
-
