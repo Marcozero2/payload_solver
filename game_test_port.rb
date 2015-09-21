@@ -3,7 +3,16 @@
 require_relative"game_port"
 require "test/unit"
 
-class TestGamePort < Test::Unit::TestCase
+class TestGamePort < Test::Unit::TestCase 
+  def test_player2_is_strongly_dominated_all_loop_3_by_3_array_col_0_fail
+		ary = [[[0,1],[2,3],[1,0]], [[2,3],[1,1],[3,0]], [[1,1],[5,3],[2,0]]]
+		assert_not_equal(true, player2_is_strongly_dominated_all_loop(ary, 0))
+	end
+	
+	def test_player2_is_strongly_dominated_all_loop_3_by_3_array_col_0
+		ary = [[[0,1],[2,3],[1,20]], [[2,3],[1,1],[3,20]], [[1,1],[5,3],[2,20]]]
+    assert_equal(true, player2_is_strongly_dominated_all_loop(ary, 0))
+  end
 
   def test_player1_is_strongly_dominated_all_loop_3_by_3_array_col_1
     ary = [[[5,1],[3,1],[5,1]],[[4,1],[2,1],[0,1]],[[4,1],[3,1],[4,1]]]
@@ -38,6 +47,7 @@ class TestGamePort < Test::Unit::TestCase
 	end
   
   def test_get_player1_payload_row_2_by_2_array_col_0_fail
+		ary = [[[0,0],[-1,-2]],[[-4,-1],[1,1]]]
     val = [0,-2]
     assert_not_equal(val, get_player1_payload_row(ary, 0))
    end
