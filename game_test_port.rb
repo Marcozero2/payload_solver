@@ -4,6 +4,90 @@ require_relative"game_port"
 require "test/unit"
 
 class TestGamePort < Test::Unit::TestCase 
+	def test_delete_row_2_by_2_array_row_0
+		ary = [[[1,2], [3,4]], [[5,6], [7,8]]]
+		val = [[[5,6], [7,8]]]
+		assert_equal(val, delete_row(ary, 0))
+  end		
+
+	def test_delete_row_2_by_2_array_row_1
+	  ary = [[[0,1],[2,3]], [[2,3],[1,1]]]
+		val = [[[0,1], [2,3]]]
+		assert_equal(val, delete_row(ary, 1))
+  end
+
+  def test_delete_row_3_by_3_array_row_0
+		ary = [[[0,1],[2,3],[1,0]], [[2,3],[1,1],[3,0]], [[1,1],[5,3],[2,0]]]
+		val = [[[2,3],[1,1],[3,0]], [[1,1],[5,3],[2,0]]]
+		assert_equal(val, delete_row(ary, 0))
+	end
+
+	def test_delete_row_3_by_3_array_row_1
+		ary = [[[0,1],[2,3],[1,0]], [[2,3],[1,1],[3,0]], [[1,1],[5,3],[2,0]]]
+		val = [[[0,1],[2,3],[1,0]], [[1,1],[5,3],[2,0]]]
+		assert_equal(val, delete_row(ary, 1))
+  end
+  
+  def test_delete_row_3_by_3_array_row_2
+		ary = [[[0,1],[2,3],[1,0]], [[2,3],[1,1],[3,0]], [[1,1],[5,3],[2,0]]]
+		val = [[[0,1],[2,3],[1,0]], [[2,3],[1,1],[3,0]]]
+		assert_equal(val, delete_row(ary, 2))
+  end
+  
+  def test_delete_col_2_by_2_array_col_0
+		ary = [[[0,1],[2,3]], [[2,3],[1,1]]]
+		val = [[[2,3]], [[1,1]]]
+		assert_equal(val, delete_col(ary, 0))
+  end	
+
+  def test_delete_col_2_by_2_array_col_0_fail
+		ary = [[[0,1],[2,3]], [[2,3],[1,1]]]
+		val = [[[2,3]], [[1,10]]]
+		assert_not_equal(val, delete_col(ary, 0))
+  end	
+  		
+	def test_delete_col_2_by_2_array_col_1
+		ary = [[[0,1],[2,3]], [[2,3],[1,1]]]
+		val = [[[0,1]], [[2,3]]]
+		assert_equal(val, delete_col(ary, 1))
+  end	
+
+  def test_delete_col_2_by_2_array_col_1_fail
+		ary = [[[0,1],[2,3]], [[2,3],[1,1]]]
+		val = [[[0,1]], [[2,10]]]
+		assert_not_equal(val, delete_col(ary, 1))
+  end		
+  
+  def test_delete_col_3_by_3_array_col_0
+		ary = [[[0,1],[2,3],[1,0]], [[2,3],[1,1],[3,0]], [[1,1],[5,3],[2,0]]]
+		val = [[[2,3],[1,0]], [[1,1],[3,0]], [[5,3],[2,0]]]
+		assert_equal(val, delete_col(ary, 0))
+  end	
+  
+  def test_delete_col_3_by_3_array_col_1
+		ary = [[[0,1],[2,3],[1,0]], [[2,3],[1,1],[3,0]], [[1,1],[5,3],[2,0]]]
+		val = [[[0,1],[1,0]], [[2,3],[3,0]], [[1,1], [2,0]]]
+		assert_equal(val, delete_col(ary, 1))
+  end	
+  
+	def test_delete_col_3_by_3_array_col_1_fail
+		ary = [[[0,1],[2,3],[1,0]], [[2,3],[1,1],[3,0]], [[1,1],[5,3],[2,0]]]
+		val = [[[0,1],[1,1]], [[2,3],[3,0]], [[1,1], [2,0]]]
+		assert_not_equal(val, delete_col(ary, 1))
+  end		
+  
+  def test_delete_col_3_by_3_array_col_2
+		ary = [[[0,1],[2,3],[1,0]], [[2,3],[1,1],[3,0]], [[1,1],[5,3],[2,0]]]
+		val = [[[0,1],[2,3]], [[2,3],[1,1]], [[1,1],[5,3]]]
+		assert_equal(val, delete_col(ary, 2))
+  end				
+  
+  def test_delete_col_3_by_3_array_col_2_fail
+		ary = [[[0,1],[2,3],[1,0]], [[2,3],[1,1],[3,0]], [[1,1],[5,3],[2,0]]]
+		val = [[[0,1],[2,3]], [[2,3],[1,2]], [[1,1],[5,3]]]
+		assert_not_equal(val, delete_col(ary, 2))
+  end	
+  
   def test_player2_is_strongly_dominated_3_by_3_array_col_0_fail
 		ary = [[[0,1],[2,3],[1,0]], [[2,3],[1,1],[3,0]], [[1,1],[5,3],[2,0]]]
 		assert_not_equal(true, player2_is_strongly_dominated(ary, 0))

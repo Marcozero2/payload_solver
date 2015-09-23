@@ -1,5 +1,19 @@
 #!/usr/bin/ruby
 
+def delete_row(array, row)
+	del = array.delete_at(row)
+	array
+end
+
+def delete_col(array, col)
+  i = 0
+  begin
+		array[i].delete_at(col)
+	  i += 1
+	end while i < array.length
+  array
+end
+
 def player1_is_strongly_dominated(array, row)
   payload_compare = get_player1_payload_row(array, row)
   i = row
