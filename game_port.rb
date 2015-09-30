@@ -1,5 +1,35 @@
 #!/usr/bin/ruby
 
+def iterate_array(array, player)
+	col = 0
+	begin 
+		val = player2_is_strongly_dominated(array, col)
+		if val == true
+			array = delete_col(array, col)
+		end
+	end while col + 1 < array[0].length
+	array
+end
+
+def iterate_array2(array, player)
+	row = 0
+	begin 
+		val = player1_is_strongly_dominated(array, row)
+		if val == true
+			array = delete_row(array, row)
+		end
+	end while row + 1 < array.length
+	array
+end
+
+def get_next_player_turn(curr_player)
+	if curr_player % 2 == 0
+		return 1
+	else
+		return 2
+	end
+end
+
 def delete_row(array, row)
 	del = array.delete_at(row)
 	array
