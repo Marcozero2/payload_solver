@@ -1,25 +1,36 @@
 #!/usr/bin/ruby
 
+#to do
 def iterate_array(array, player)
 	col = 0
-	begin 
-		val = player2_is_strongly_dominated(array, col)
+	mark_for_delete = []
+	begin
+	  val = player2_is_strongly_dominated(array, col)
 		if val == true
-			array = delete_col(array, col)
+		  mark_for_delete << col
 		end
+	col += 1
 	end while col + 1 < array[0].length
-	array
 end
 
 def iterate_array2(array, player)
 	row = 0
-	begin 
+	mark_for_delete = []
+	begin
 		val = player1_is_strongly_dominated(array, row)
 		if val == true
-			array = delete_row(array, row)
+			mark_for_delete << row
 		end
-	end while row + 1 < array.length
-	array
+	row += 1
+	end while row + 1 <= array.length
+	x = array.select { |x| mark_for_delete.include?(array.index(x)) == false}
+end
+
+#to do
+def finish_array(array, player)
+	array = iterate_array(array, player)
+	player = get_next_player_turn(player)
+	array = iterate_array2(array, player)
 end
 
 def get_next_player_turn(curr_player)
