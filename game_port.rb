@@ -1,7 +1,12 @@
 #!/usr/bin/ruby
 
+# deletes any of the columns of player 2 that are dominated by any of the other columns of player 2
+# * *Args*    :
+#   - +ary+ -> the matrix with payloads of players
+#   - +player+ -> integer enum for current player
+# * *Returns* :
+#   - a new array with the any dominated stratgies of player 2 removed
 def iterate_array(ary, player)
-  # deletes any of the columns of player 2 that are dominated by any of the other columns of player 2
   col = 0
   mfd = []
   until col == ary[0].length do
@@ -21,8 +26,13 @@ def iterate_array(ary, player)
   new_ary
 end
 
+# deletes any of the rows of player 1 that are dominated by any of the other rows of player 1
+# * *Args*    :
+#   - +ary+ -> the matrix with payloads of players
+#   - +player+ -> integer enum for current player
+# * *Returns* :
+#   - an array with the any dominated stratgies of player 1 removed
 def iterate_array2(ary, player)
-  # deletes any of the rows of player 1 that are dominated by any of the other rows of player 1
   row = 0
   mfd = []
   until row == ary.length do
@@ -42,8 +52,12 @@ def finish_array(ary, player)
   ary = iterate_array2(ary, player)
 end
 
-def get_next_player_turn(curr_player)
-  # returns an integer representing the next player
+# returns an integer representing the next player
+# * *Args*    :
+#   - +player+ -> integer enum for current player
+# * *Returns* :
+#   - an integer enum for next player
+def get_next_player_turn(player)
   if curr_player % 2 == 0
     return 1
   else
@@ -51,14 +65,24 @@ def get_next_player_turn(curr_player)
   end
 end
 
+# removes a row in a array
+# * *Args*    :
+#   - +ary+ -> the matrix with payloads of players
+#   - +row+ -> integer for row to be removed
+# * *Returns* :
+#   - array with a row removed
 def delete_row(ary, row)
-  # removes a row in a array
   del = ary.delete_at(row)
   ary
 end
 
+# removes a column in a array
+# * *Args*    :
+#   - +ary+ -> the matrix with payloads of players
+#   - +col+ -> integer for column to be removed
+# * *Returns* :
+#   - array with a column removed
 def delete_col(ary, col)
-  # removes a column in a array
   i = 0
   until i == ary.length do
     ary[i].delete_at(col)
@@ -67,8 +91,13 @@ def delete_col(ary, col)
   ary
 end
 
+# returns a boolean indicating a particular row is dominated by any of the other rows of player 1
+# * *Args*    :
+#   - +ary+ -> the matrix with payloads of players
+#   - +row+ -> integer for row to be tested for domination
+# * *Returns* :
+#   - true if selected row is dominated by any of player 1's other strategies, false otherwise
 def player1_is_strongly_dominated(ary, row)
-  # returns a boolean indicating a particular row is dominated by any of the other rows of player 1
   pay_comp = get_player1_payload_row(ary, row)
   i = row
   if row + 1 < ary.length
@@ -93,8 +122,13 @@ def player1_is_strongly_dominated(ary, row)
 return false
 end
 
+# returns a boolean indicating a particular column is dominated by any of the other columns of player 2
+# * *Args*    :
+#   - +ary+ -> the matrix with payloads of players
+#   - +col+ -> integer for column to be tested for domination
+# * *Returns* :
+#   - true if selected row is dominated by any of player 2's other strategies, false otherwise
 def player2_is_strongly_dominated(ary, col)
-  # returns a boolean indicating a particular column is dominated by any of the other columns of player 2
   pay_comp = get_player2_payload_col(ary, col)
   i = col
   if col + 1 < ary.length
@@ -119,8 +153,13 @@ def player2_is_strongly_dominated(ary, col)
   return false
 end
 
+# returns an array of all the payloads of player 2 in an array for a particular column
+# * *Args*    :
+#   - +ary+ -> the matrix with payloads of players
+#   - +col+ -> integer for column to be removed
+# * *Returns* :
+#   - an array with the payoffs of player 2 for a column
 def get_player2_payload_col(ary, col)
-  # returns an array of all the payloads of player 2 in an array for a particular column
   pay_ary = []
   i = 0
   until i == ary.length do #why not i + 1?
@@ -132,8 +171,13 @@ def get_player2_payload_col(ary, col)
   pay_ary
 end
 
+# returns an array of all the payloads of player 1 in an array for a particular row
+# * *Args*    :
+#   - +ary+ -> the matrix with payloads of players
+#   - +col+ -> integer for column to be removed
+# * *Returns* :
+#   - an array with the payoffs of player 1 for a row
 def get_player1_payload_row(ary, row)
-  # returns an array of all the payloads of player 1 in an array for a particular row
   pay_ary = []
   i = 0
   until i == ary.length do
@@ -145,8 +189,13 @@ def get_player1_payload_row(ary, row)
   pay_ary
 end
 
+# returns an array of all the payloads of player 1 in an array
+# * *Args*    :
+#   - +ary+ -> the matrix with payloads of players
+#   - +col+ -> integer for column to be removed
+# * *Returns* :
+#   - an array with all the payloads of player 1 for an array
 def get_player1_payload(ary)
-  # returns an array of all the payloads of player 1 in an array
   pay_ary = []
   i = 0
   j = 0
@@ -162,9 +211,14 @@ def get_player1_payload(ary)
   end while i < ary.length
   pay_ary
 end
-        
+  
+# returns an array of all the payloads of player 2 in an array
+# * *Args*    :
+#   - +ary+ -> the matrix with payloads of players
+#   - +col+ -> integer for column to be removed
+# * *Returns* :
+#   - an array with all the payloads of player 2 for an array
 def get_player2_payload(ary)
-  # returns an array of all the payloads of player 2 in an array
   pay_ary = []
   j = 0
   i = 0
@@ -181,8 +235,13 @@ def get_player2_payload(ary)
   pay_ary
 end
 
+# returns a boolean if all the corresponding values in the first array are less than the values in the second array
+# * *Args*    :
+#   - +ary+ -> the matrix with payloads of players
+#   - +col+ -> integer for column to be removed
+# * *Returns* :
+#   - an integer enum for next player
 def compare_payload(pay1, pay2)
-  # returns a boolean if all the corresponding values in the first array are less than the values in the second array
   count = 0
   i = 0
   until i == pay1.length do
@@ -197,8 +256,13 @@ def compare_payload(pay1, pay2)
   return false
 end
 
+# returns an integer giving the relative value of one item compared to another item
+# * *Args*    :
+#   - +ary+ -> the matrix with payloads of players
+#   - +col+ -> integer for column to be removed
+# * *Returns* :
+#   - 1 if first parameter is greater than second parameter, -1 if less than, and 0 if equal
 def compare_to(a, b)
-  # returns an integer giving the relative value of one item compared to another item
   if (a > b)
     return 1
   elsif (a < b)

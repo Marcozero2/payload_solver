@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Object - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/darkfish.js"></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link">BasicObject
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-compare_payload">#compare_payload</a>
+    
+    <li ><a href="#method-i-compare_to">#compare_to</a>
+    
+    <li ><a href="#method-i-delete_col">#delete_col</a>
+    
+    <li ><a href="#method-i-delete_row">#delete_row</a>
+    
+    <li ><a href="#method-i-finish_array">#finish_array</a>
+    
+    <li ><a href="#method-i-get_next_player_turn">#get_next_player_turn</a>
+    
+    <li ><a href="#method-i-get_player1_payload">#get_player1_payload</a>
+    
+    <li ><a href="#method-i-get_player1_payload_row">#get_player1_payload_row</a>
+    
+    <li ><a href="#method-i-get_player2_payload">#get_player2_payload</a>
+    
+    <li ><a href="#method-i-get_player2_payload_col">#get_player2_payload_col</a>
+    
+    <li ><a href="#method-i-iterate_array">#iterate_array</a>
+    
+    <li ><a href="#method-i-iterate_array2">#iterate_array2</a>
+    
+    <li ><a href="#method-i-player1_is_strongly_dominated">#player1_is_strongly_dominated</a>
+    
+    <li ><a href="#method-i-player2_is_strongly_dominated">#player2_is_strongly_dominated</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Object">
+  <h1 id="class-Object" class="class">
+    class Object
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-compare_payload" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">compare_payload</span><span
+            class="method-args">(pay1, pay2)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>returns a boolean if all the corresponding values in the first array are
+less than the values in the second array</p>
+<ul><li>
+<p><strong>Args</strong>    :</p>
+<ul><li>
+<p><code>ary</code> -&gt; the matrix with payloads of players</p>
+</li><li>
+<p><code>col</code> -&gt; integer for column to be removed</p>
+</li></ul>
+</li><li>
+<p><strong>Returns</strong> :</p>
+<ul><li>
+<p>an integer enum for next player</p>
+</li></ul>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="compare_payload-source">
+            <pre><span class="ruby-comment"># File game_port.rb, line 244</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">compare_payload</span>(<span class="ruby-identifier">pay1</span>, <span class="ruby-identifier">pay2</span>)
+  <span class="ruby-identifier">count</span> = <span class="ruby-value">0</span>
+  <span class="ruby-identifier">i</span> = <span class="ruby-value">0</span>
+  <span class="ruby-keyword">until</span> <span class="ruby-identifier">i</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">pay1</span>.<span class="ruby-identifier">length</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">compare_to</span>(<span class="ruby-identifier">pay1</span>[<span class="ruby-identifier">i</span>], <span class="ruby-identifier">pay2</span>[<span class="ruby-identifier">i</span>]) <span class="ruby-operator">==</span> <span class="ruby-value">-1</span>
+      <span class="ruby-identifier">count</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">i</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">count</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-identifier">pay1</span>.<span class="ruby-identifier">length</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-compare_to" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">compare_to</span><span
+            class="method-args">(a, b)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>returns an integer giving the relative value of one item compared to
+another item</p>
+<ul><li>
+<p><strong>Args</strong>    :</p>
+<ul><li>
+<p><code>ary</code> -&gt; the matrix with payloads of players</p>
+</li><li>
+<p><code>col</code> -&gt; integer for column to be removed</p>
+</li></ul>
+</li><li>
+<p><strong>Returns</strong> :</p>
+<ul><li>
+<p>1 if first parameter is greater than second parameter, -1 if less than, and
+0 if equal</p>
+</li></ul>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="compare_to-source">
+            <pre><span class="ruby-comment"># File game_port.rb, line 265</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">compare_to</span>(<span class="ruby-identifier">a</span>, <span class="ruby-identifier">b</span>)
+  <span class="ruby-keyword">if</span> (<span class="ruby-identifier">a</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">b</span>)
+    <span class="ruby-keyword">return</span> <span class="ruby-value">1</span>
+  <span class="ruby-keyword">elsif</span> (<span class="ruby-identifier">a</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">b</span>)
+    <span class="ruby-keyword">return</span> <span class="ruby-value">-1</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-value">0</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-delete_col" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">delete_col</span><span
+            class="method-args">(ary, col)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>removes a column in a array</p>
+<ul><li>
+<p><strong>Args</strong>    :</p>
+<ul><li>
+<p><code>ary</code> -&gt; the matrix with payloads of players</p>
+</li><li>
+<p><code>col</code> -&gt; integer for column to be removed</p>
+</li></ul>
+</li><li>
+<p><strong>Returns</strong> :</p>
+<ul><li>
+<p>array with a column removed</p>
+</li></ul>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="delete_col-source">
+            <pre><span class="ruby-comment"># File game_port.rb, line 85</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">delete_col</span>(<span class="ruby-identifier">ary</span>, <span class="ruby-identifier">col</span>)
+  <span class="ruby-identifier">i</span> = <span class="ruby-value">0</span>
+  <span class="ruby-keyword">until</span> <span class="ruby-identifier">i</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">ary</span>.<span class="ruby-identifier">length</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">ary</span>[<span class="ruby-identifier">i</span>].<span class="ruby-identifier">delete_at</span>(<span class="ruby-identifier">col</span>)
+    <span class="ruby-identifier">i</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">ary</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-delete_row" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">delete_row</span><span
+            class="method-args">(ary, row)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>removes a row in a array</p>
+<ul><li>
+<p><strong>Args</strong>    :</p>
+<ul><li>
+<p><code>ary</code> -&gt; the matrix with payloads of players</p>
+</li><li>
+<p><code>row</code> -&gt; integer for row to be removed</p>
+</li></ul>
+</li><li>
+<p><strong>Returns</strong> :</p>
+<ul><li>
+<p>array with a row removed</p>
+</li></ul>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="delete_row-source">
+            <pre><span class="ruby-comment"># File game_port.rb, line 74</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">delete_row</span>(<span class="ruby-identifier">ary</span>, <span class="ruby-identifier">row</span>)
+  <span class="ruby-identifier">del</span> = <span class="ruby-identifier">ary</span>.<span class="ruby-identifier">delete_at</span>(<span class="ruby-identifier">row</span>)
+  <span class="ruby-identifier">ary</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-finish_array" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">finish_array</span><span
+            class="method-args">(ary, player)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="finish_array-source">
+            <pre><span class="ruby-comment"># File game_port.rb, line 48</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">finish_array</span>(<span class="ruby-identifier">ary</span>, <span class="ruby-identifier">player</span>)
+  <span class="ruby-comment"># a test function --delete later</span>
+  <span class="ruby-identifier">ary</span> = <span class="ruby-identifier">iterate_array</span>(<span class="ruby-identifier">ary</span>, <span class="ruby-identifier">player</span>)
+  <span class="ruby-identifier">player</span> = <span class="ruby-identifier">get_next_player_turn</span>(<span class="ruby-identifier">player</span>)
+  <span class="ruby-identifier">ary</span> = <span class="ruby-identifier">iterate_array2</span>(<span class="ruby-identifier">ary</span>, <span class="ruby-identifier">player</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-get_next_player_turn" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_next_player_turn</span><span
+            class="method-args">(player)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>returns an integer representing the next player</p>
+<ul><li>
+<p><strong>Args</strong>    :</p>
+<ul><li>
+<p><code>player</code> -&gt; integer enum for current player</p>
+</li></ul>
+</li><li>
+<p><strong>Returns</strong> :</p>
+<ul><li>
+<p>an integer enum for next player</p>
+</li></ul>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="get_next_player_turn-source">
+            <pre><span class="ruby-comment"># File game_port.rb, line 60</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_next_player_turn</span>(<span class="ruby-identifier">player</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">curr_player</span> <span class="ruby-operator">%</span> <span class="ruby-value">2</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-value">1</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-value">2</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-get_player1_payload" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_player1_payload</span><span
+            class="method-args">(ary)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>returns an array of all the payloads of player 1 in an array</p>
+<ul><li>
+<p><strong>Args</strong>    :</p>
+<ul><li>
+<p><code>ary</code> -&gt; the matrix with payloads of players</p>
+</li><li>
+<p><code>col</code> -&gt; integer for column to be removed</p>
+</li></ul>
+</li><li>
+<p><strong>Returns</strong> :</p>
+<ul><li>
+<p>an array with all the payloads of player 1 for an array</p>
+</li></ul>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="get_player1_payload-source">
+            <pre><span class="ruby-comment"># File game_port.rb, line 198</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_player1_payload</span>(<span class="ruby-identifier">ary</span>)
+  <span class="ruby-identifier">pay_ary</span> = []
+  <span class="ruby-identifier">i</span> = <span class="ruby-value">0</span>
+  <span class="ruby-identifier">j</span> = <span class="ruby-value">0</span>
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-keyword">begin</span>
+      <span class="ruby-identifier">pay</span> = <span class="ruby-identifier">ary</span>[<span class="ruby-identifier">i</span>][<span class="ruby-identifier">j</span>]
+      <span class="ruby-identifier">payp1</span> = <span class="ruby-identifier">pay</span>[<span class="ruby-value">0</span>]
+      <span class="ruby-identifier">pay_ary</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">payp1</span>
+      <span class="ruby-identifier">j</span> <span class="ruby-operator">+=</span><span class="ruby-value">1</span>
+    <span class="ruby-keyword">end</span> <span class="ruby-keyword">while</span> <span class="ruby-identifier">j</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">ary</span>[<span class="ruby-identifier">i</span>].<span class="ruby-identifier">length</span>
+    <span class="ruby-identifier">i</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+    <span class="ruby-identifier">j</span> = <span class="ruby-value">0</span>
+  <span class="ruby-keyword">end</span> <span class="ruby-keyword">while</span> <span class="ruby-identifier">i</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">ary</span>.<span class="ruby-identifier">length</span>
+  <span class="ruby-identifier">pay_ary</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-get_player1_payload_row" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_player1_payload_row</span><span
+            class="method-args">(ary, row)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>returns an array of all the payloads of player 1 in an array for a
+particular row</p>
+<ul><li>
+<p><strong>Args</strong>    :</p>
+<ul><li>
+<p><code>ary</code> -&gt; the matrix with payloads of players</p>
+</li><li>
+<p><code>col</code> -&gt; integer for column to be removed</p>
+</li></ul>
+</li><li>
+<p><strong>Returns</strong> :</p>
+<ul><li>
+<p>an array with the payoffs of player 1 for a row</p>
+</li></ul>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="get_player1_payload_row-source">
+            <pre><span class="ruby-comment"># File game_port.rb, line 180</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_player1_payload_row</span>(<span class="ruby-identifier">ary</span>, <span class="ruby-identifier">row</span>)
+  <span class="ruby-identifier">pay_ary</span> = []
+  <span class="ruby-identifier">i</span> = <span class="ruby-value">0</span>
+  <span class="ruby-keyword">until</span> <span class="ruby-identifier">i</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">ary</span>.<span class="ruby-identifier">length</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">pay</span> = <span class="ruby-identifier">ary</span>[<span class="ruby-identifier">row</span>][<span class="ruby-identifier">i</span>]
+    <span class="ruby-identifier">payp1</span> = <span class="ruby-identifier">pay</span>[<span class="ruby-value">0</span>]
+    <span class="ruby-identifier">pay_ary</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">payp1</span>
+    <span class="ruby-identifier">i</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">pay_ary</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-get_player2_payload" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_player2_payload</span><span
+            class="method-args">(ary)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>returns an array of all the payloads of player 2 in an array</p>
+<ul><li>
+<p><strong>Args</strong>    :</p>
+<ul><li>
+<p><code>ary</code> -&gt; the matrix with payloads of players</p>
+</li><li>
+<p><code>col</code> -&gt; integer for column to be removed</p>
+</li></ul>
+</li><li>
+<p><strong>Returns</strong> :</p>
+<ul><li>
+<p>an array with all the payloads of player 2 for an array</p>
+</li></ul>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="get_player2_payload-source">
+            <pre><span class="ruby-comment"># File game_port.rb, line 221</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_player2_payload</span>(<span class="ruby-identifier">ary</span>)
+  <span class="ruby-identifier">pay_ary</span> = []
+  <span class="ruby-identifier">j</span> = <span class="ruby-value">0</span>
+  <span class="ruby-identifier">i</span> = <span class="ruby-value">0</span>
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-keyword">begin</span>
+      <span class="ruby-identifier">pay</span> = <span class="ruby-identifier">ary</span>[<span class="ruby-identifier">i</span>][<span class="ruby-identifier">j</span>]
+      <span class="ruby-identifier">payp2</span> = <span class="ruby-identifier">pay</span>[<span class="ruby-value">1</span>]
+      <span class="ruby-identifier">pay_ary</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">payp2</span>
+      <span class="ruby-identifier">j</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+    <span class="ruby-keyword">end</span> <span class="ruby-keyword">while</span> <span class="ruby-identifier">j</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">ary</span>[<span class="ruby-identifier">i</span>].<span class="ruby-identifier">length</span>
+    <span class="ruby-identifier">i</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+    <span class="ruby-identifier">j</span> = <span class="ruby-value">0</span>
+  <span class="ruby-keyword">end</span> <span class="ruby-keyword">while</span> <span class="ruby-identifier">i</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">ary</span>.<span class="ruby-identifier">length</span>
+  <span class="ruby-identifier">pay_ary</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-get_player2_payload_col" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_player2_payload_col</span><span
+            class="method-args">(ary, col)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>returns an array of all the payloads of player 2 in an array for a
+particular column</p>
+<ul><li>
+<p><strong>Args</strong>    :</p>
+<ul><li>
+<p><code>ary</code> -&gt; the matrix with payloads of players</p>
+</li><li>
+<p><code>col</code> -&gt; integer for column to be removed</p>
+</li></ul>
+</li><li>
+<p><strong>Returns</strong> :</p>
+<ul><li>
+<p>an array with the payoffs of player 2 for a column</p>
+</li></ul>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="get_player2_payload_col-source">
+            <pre><span class="ruby-comment"># File game_port.rb, line 162</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_player2_payload_col</span>(<span class="ruby-identifier">ary</span>, <span class="ruby-identifier">col</span>)
+  <span class="ruby-identifier">pay_ary</span> = []
+  <span class="ruby-identifier">i</span> = <span class="ruby-value">0</span>
+  <span class="ruby-keyword">until</span> <span class="ruby-identifier">i</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">ary</span>.<span class="ruby-identifier">length</span> <span class="ruby-keyword">do</span> <span class="ruby-comment">#why not i + 1?</span>
+    <span class="ruby-identifier">pay</span> = <span class="ruby-identifier">ary</span>[<span class="ruby-identifier">i</span>][<span class="ruby-identifier">col</span>]
+    <span class="ruby-identifier">payp2</span> = <span class="ruby-identifier">pay</span>[<span class="ruby-value">1</span>]
+    <span class="ruby-identifier">pay_ary</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">payp2</span>
+    <span class="ruby-identifier">i</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">pay_ary</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-iterate_array" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">iterate_array</span><span
+            class="method-args">(ary, player)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>deletes any of the columns of player 2 that are dominated by any of the
+other columns of player 2</p>
+<ul><li>
+<p><strong>Args</strong>    :</p>
+<ul><li>
+<p><code>ary</code> -&gt; the matrix with payloads of players</p>
+</li><li>
+<p><code>player</code> -&gt; integer enum for current player</p>
+</li></ul>
+</li><li>
+<p><strong>Returns</strong> :</p>
+<ul><li>
+<p>a new array with the any dominated stratgies of player 2 removed</p>
+</li></ul>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="iterate_array-source">
+            <pre><span class="ruby-comment"># File game_port.rb, line 9</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">iterate_array</span>(<span class="ruby-identifier">ary</span>, <span class="ruby-identifier">player</span>)
+  <span class="ruby-identifier">col</span> = <span class="ruby-value">0</span>
+  <span class="ruby-identifier">mfd</span> = []
+  <span class="ruby-keyword">until</span> <span class="ruby-identifier">col</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">ary</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">length</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">val</span> = <span class="ruby-identifier">player2_is_strongly_dominated</span>(<span class="ruby-identifier">ary</span>, <span class="ruby-identifier">col</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">val</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">true</span>
+      <span class="ruby-identifier">mfd</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">col</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">col</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">new_ary</span> = []
+  <span class="ruby-identifier">i</span> = <span class="ruby-value">0</span>
+  <span class="ruby-keyword">until</span> <span class="ruby-identifier">i</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">ary</span>.<span class="ruby-identifier">length</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">a</span> = <span class="ruby-identifier">ary</span>[<span class="ruby-identifier">i</span>].<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">item</span><span class="ruby-operator">|</span> <span class="ruby-identifier">mfd</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">ary</span>[<span class="ruby-identifier">i</span>].<span class="ruby-identifier">index</span>(<span class="ruby-identifier">item</span>)) <span class="ruby-operator">==</span> <span class="ruby-keyword">false</span> }
+    <span class="ruby-identifier">new_ary</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">a</span>
+    <span class="ruby-identifier">i</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">new_ary</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-iterate_array2" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">iterate_array2</span><span
+            class="method-args">(ary, player)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>deletes any of the rows of player 1 that are dominated by any of the other
+rows of player 1</p>
+<ul><li>
+<p><strong>Args</strong>    :</p>
+<ul><li>
+<p><code>ary</code> -&gt; the matrix with payloads of players</p>
+</li><li>
+<p><code>player</code> -&gt; integer enum for current player</p>
+</li></ul>
+</li><li>
+<p><strong>Returns</strong> :</p>
+<ul><li>
+<p>an array with the any dominated stratgies of player 1 removed</p>
+</li></ul>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="iterate_array2-source">
+            <pre><span class="ruby-comment"># File game_port.rb, line 35</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">iterate_array2</span>(<span class="ruby-identifier">ary</span>, <span class="ruby-identifier">player</span>)
+  <span class="ruby-identifier">row</span> = <span class="ruby-value">0</span>
+  <span class="ruby-identifier">mfd</span> = []
+  <span class="ruby-keyword">until</span> <span class="ruby-identifier">row</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">ary</span>.<span class="ruby-identifier">length</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">val</span> = <span class="ruby-identifier">player1_is_strongly_dominated</span>(<span class="ruby-identifier">ary</span>, <span class="ruby-identifier">row</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">val</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">true</span>
+      <span class="ruby-identifier">mfd</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">row</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">row</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">ary</span> = <span class="ruby-identifier">ary</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">mfd</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">ary</span>.<span class="ruby-identifier">index</span>(<span class="ruby-identifier">x</span>)) <span class="ruby-operator">==</span> <span class="ruby-keyword">false</span> }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-player1_is_strongly_dominated" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">player1_is_strongly_dominated</span><span
+            class="method-args">(ary, row)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>returns a boolean indicating a particular row is dominated by any of the
+other rows of player 1</p>
+<ul><li>
+<p><strong>Args</strong>    :</p>
+<ul><li>
+<p><code>ary</code> -&gt; the matrix with payloads of players</p>
+</li><li>
+<p><code>row</code> -&gt; integer for row to be tested for domination</p>
+</li></ul>
+</li><li>
+<p><strong>Returns</strong> :</p>
+<ul><li>
+<p>true if selected row is dominated by any of player 1&#39;s other
+strategies, false otherwise</p>
+</li></ul>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="player1_is_strongly_dominated-source">
+            <pre><span class="ruby-comment"># File game_port.rb, line 100</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">player1_is_strongly_dominated</span>(<span class="ruby-identifier">ary</span>, <span class="ruby-identifier">row</span>)
+  <span class="ruby-identifier">pay_comp</span> = <span class="ruby-identifier">get_player1_payload_row</span>(<span class="ruby-identifier">ary</span>, <span class="ruby-identifier">row</span>)
+  <span class="ruby-identifier">i</span> = <span class="ruby-identifier">row</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">row</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">ary</span>.<span class="ruby-identifier">length</span>
+    <span class="ruby-keyword">until</span> <span class="ruby-identifier">i</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">ary</span>.<span class="ruby-identifier">length</span> <span class="ruby-keyword">do</span>
+      <span class="ruby-identifier">payp1</span> = <span class="ruby-identifier">get_player1_payload_row</span>(<span class="ruby-identifier">ary</span>, <span class="ruby-identifier">i</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>)
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">compare_payload</span>(<span class="ruby-identifier">pay_comp</span>, <span class="ruby-identifier">payp1</span>) <span class="ruby-operator">==</span> <span class="ruby-keyword">true</span>
+        <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">i</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">row</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">1</span>
+    <span class="ruby-identifier">j</span> = <span class="ruby-value">0</span>
+    <span class="ruby-keyword">until</span> <span class="ruby-identifier">j</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">row</span> <span class="ruby-keyword">do</span>
+      <span class="ruby-identifier">payp1</span> = <span class="ruby-identifier">get_player1_payload_row</span>(<span class="ruby-identifier">ary</span>, <span class="ruby-identifier">j</span>)
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">compare_payload</span>(<span class="ruby-identifier">pay_comp</span>, <span class="ruby-identifier">payp1</span>) <span class="ruby-operator">==</span> <span class="ruby-keyword">true</span>
+        <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">j</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-player2_is_strongly_dominated" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">player2_is_strongly_dominated</span><span
+            class="method-args">(ary, col)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>returns a boolean indicating a particular column is dominated by any of the
+other columns of player 2</p>
+<ul><li>
+<p><strong>Args</strong>    :</p>
+<ul><li>
+<p><code>ary</code> -&gt; the matrix with payloads of players</p>
+</li><li>
+<p><code>col</code> -&gt; integer for column to be tested for domination</p>
+</li></ul>
+</li><li>
+<p><strong>Returns</strong> :</p>
+<ul><li>
+<p>true if selected row is dominated by any of player 2&#39;s other
+strategies, false otherwise</p>
+</li></ul>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="player2_is_strongly_dominated-source">
+            <pre><span class="ruby-comment"># File game_port.rb, line 131</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">player2_is_strongly_dominated</span>(<span class="ruby-identifier">ary</span>, <span class="ruby-identifier">col</span>)
+  <span class="ruby-identifier">pay_comp</span> = <span class="ruby-identifier">get_player2_payload_col</span>(<span class="ruby-identifier">ary</span>, <span class="ruby-identifier">col</span>)
+  <span class="ruby-identifier">i</span> = <span class="ruby-identifier">col</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">col</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">ary</span>.<span class="ruby-identifier">length</span>
+    <span class="ruby-keyword">until</span> <span class="ruby-identifier">i</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">ary</span>.<span class="ruby-identifier">length</span> <span class="ruby-keyword">do</span>
+      <span class="ruby-identifier">payp2</span> = <span class="ruby-identifier">get_player2_payload_col</span>(<span class="ruby-identifier">ary</span>, <span class="ruby-identifier">i</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>)
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">compare_payload</span>(<span class="ruby-identifier">pay_comp</span>, <span class="ruby-identifier">payp2</span>) <span class="ruby-operator">==</span> <span class="ruby-keyword">true</span>
+        <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">i</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">col</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">1</span>
+    <span class="ruby-identifier">j</span> = <span class="ruby-value">0</span>
+    <span class="ruby-keyword">begin</span>
+      <span class="ruby-identifier">payp2</span> = <span class="ruby-identifier">get_player2_payload_col</span>(<span class="ruby-identifier">ary</span>, <span class="ruby-identifier">j</span>)
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">compare_payload</span>(<span class="ruby-identifier">pay_comp</span>, <span class="ruby-identifier">payp2</span>) <span class="ruby-operator">==</span> <span class="ruby-keyword">true</span>
+        <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">j</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+    <span class="ruby-keyword">end</span> <span class="ruby-keyword">while</span> <span class="ruby-identifier">j</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">col</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+
