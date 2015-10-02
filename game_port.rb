@@ -1,6 +1,7 @@
 #!/usr/bin/ruby
 
 def iterate_array(ary, player)
+  # deletes any of the columns of player 2 that are dominated by any of the other columns of player 2
   col = 0
   mfd = []
   until col == ary[0].length do
@@ -21,6 +22,7 @@ def iterate_array(ary, player)
 end
 
 def iterate_array2(ary, player)
+  # deletes any of the rows of player 1 that are dominated by any of the other rows of player 1
   row = 0
   mfd = []
   until row == ary.length do
@@ -34,12 +36,14 @@ def iterate_array2(ary, player)
 end
 
 def finish_array(ary, player)
+  # a test function --delete later
   ary = iterate_array(ary, player)
   player = get_next_player_turn(player)
   ary = iterate_array2(ary, player)
 end
 
 def get_next_player_turn(curr_player)
+  # returns an integer representing the next player
   if curr_player % 2 == 0
     return 1
   else
@@ -48,11 +52,13 @@ def get_next_player_turn(curr_player)
 end
 
 def delete_row(ary, row)
+  # removes a row in a array
   del = ary.delete_at(row)
   ary
 end
 
 def delete_col(ary, col)
+  # removes a column in a array
   i = 0
   until i == ary.length do
     ary[i].delete_at(col)
@@ -62,6 +68,7 @@ def delete_col(ary, col)
 end
 
 def player1_is_strongly_dominated(ary, row)
+  # returns a boolean indicating a particular row is dominated by any of the other rows of player 1
   pay_comp = get_player1_payload_row(ary, row)
   i = row
   if row + 1 < ary.length
@@ -87,6 +94,7 @@ return false
 end
 
 def player2_is_strongly_dominated(ary, col)
+  # returns a boolean indicating a particular column is dominated by any of the other columns of player 2
   pay_comp = get_player2_payload_col(ary, col)
   i = col
   if col + 1 < ary.length
@@ -112,6 +120,7 @@ def player2_is_strongly_dominated(ary, col)
 end
 
 def get_player2_payload_col(ary, col)
+  # returns an array of all the payloads of player 2 in an array for a particular column
   pay_ary = []
   i = 0
   until i == ary.length do #why not i + 1?
@@ -124,6 +133,7 @@ def get_player2_payload_col(ary, col)
 end
 
 def get_player1_payload_row(ary, row)
+  # returns an array of all the payloads of player 1 in an array for a particular row
   pay_ary = []
   i = 0
   until i == ary.length do
@@ -136,6 +146,7 @@ def get_player1_payload_row(ary, row)
 end
 
 def get_player1_payload(ary)
+  # returns an array of all the payloads of player 1 in an array
   pay_ary = []
   i = 0
   j = 0
@@ -153,6 +164,7 @@ def get_player1_payload(ary)
 end
         
 def get_player2_payload(ary)
+  # returns an array of all the payloads of player 2 in an array
   pay_ary = []
   j = 0
   i = 0
@@ -170,6 +182,7 @@ def get_player2_payload(ary)
 end
 
 def compare_payload(pay1, pay2)
+  # returns a boolean if all the corresponding values in the first array are less than the values in the second array
   count = 0
   i = 0
   until i == pay1.length do
@@ -185,6 +198,7 @@ def compare_payload(pay1, pay2)
 end
 
 def compare_to(a, b)
+  # returns an integer giving the relative value of one item compared to another item
   if (a > b)
     return 1
   elsif (a < b)
