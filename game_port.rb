@@ -1,42 +1,42 @@
 #!/usr/bin/ruby
 
-def iterate_array(array, player)
+def iterate_array(ary, player)
   col = 0
   mfd = []
-  until col == array[0].length do
-    val = player2_is_strongly_dominated(array, col)
+  until col == ary[0].length do
+    val = player2_is_strongly_dominated(ary, col)
     if val == true
       mfd << col
     end
     col += 1
   end
-  new_array = []
+  new_ary = []
   i = 0
-  until i == array.length
-    a = array[i].select { |item| mfd.include?(array[i].index(item)) == false }
-    new_array << a
+  until i == ary.length do
+    a = ary[i].select { |item| mfd.include?(ary[i].index(item)) == false }
+    new_ary << a
     i += 1
   end
-  new_array
+  new_ary
 end
 
-def iterate_array2(array, player)
+def iterate_array2(ary, player)
   row = 0
-  mark_for_delete = []
-  until row == array.length
-    val = player1_is_strongly_dominated(array, row)
+  mfd = []
+  until row == ary.length do
+    val = player1_is_strongly_dominated(ary, row)
     if val == true
-      mark_for_delete << row
+      mfd << row
     end
   row += 1
   end
-  ary = array.select { |x| mark_for_delete.include?(array.index(x)) == false }
+  ary = ary.select { |x| mfd.include?(ary.index(x)) == false }
 end
 
-def finish_array(array, player)
-  array = iterate_array(array, player)
+def finish_array(ary, player)
+  ary = iterate_array(ary, player)
   player = get_next_player_turn(player)
-  array = iterate_array2(array, player)
+  ary = iterate_array2(ary, player)
 end
 
 def get_next_player_turn(curr_player)
@@ -47,27 +47,27 @@ def get_next_player_turn(curr_player)
   end
 end
 
-def delete_row(array, row)
-  del = array.delete_at(row)
-  array
+def delete_row(ary, row)
+  del = ary.delete_at(row)
+  ary
 end
 
-def delete_col(array, col)
+def delete_col(ary, col)
   i = 0
-  until i == array.length
-    array[i].delete_at(col)
+  until i == ary.length do
+    ary[i].delete_at(col)
     i += 1
   end
-  array
+  ary
 end
 
-def player1_is_strongly_dominated(array, row)
-  payload_compare = get_player1_payload_row(array, row)
+def player1_is_strongly_dominated(ary, row)
+  pay_comp = get_player1_payload_row(ary, row)
   i = row
-  if row + 1 < array.length
-    until i + 1 == array.length
-      payload_p1 = get_player1_payload_row(array, i+1)
-      if compare_payload(payload_compare, payload_p1) == true
+  if row + 1 < ary.length
+    until i + 1 == ary.length do
+      payp1 = get_player1_payload_row(ary, i + 1)
+      if compare_payload(pay_comp, payp1) == true
         return true
       end
       i += 1
@@ -75,9 +75,9 @@ def player1_is_strongly_dominated(array, row)
   end
   if row >= 1
     j = 0
-    until j > row
-      payload_p1 = get_player1_payload_row(array, j)
-      if compare_payload(payload_compare, payload_p1) == true
+    until j > row do
+      payp1 = get_player1_payload_row(ary, j)
+      if compare_payload(pay_comp, payp1) == true
         return true
       end
       j += 1
@@ -86,13 +86,13 @@ def player1_is_strongly_dominated(array, row)
 return false
 end
 
-def player2_is_strongly_dominated(array, col)
-  payload_compare = get_player2_payload_col(array, col)
+def player2_is_strongly_dominated(ary, col)
+  pay_comp = get_player2_payload_col(ary, col)
   i = col
-  if col + 1 < array.length
-    until i + 1 == array.length
-      payload_p2 = get_player2_payload_col(array, i + 1)
-      if compare_payload(payload_compare, payload_p2) == true
+  if col + 1 < ary.length
+    until i + 1 == ary.length do
+      payp2 = get_player2_payload_col(ary, i + 1)
+      if compare_payload(pay_comp, payp2) == true
         return true
       end
     i += 1
@@ -100,79 +100,79 @@ def player2_is_strongly_dominated(array, col)
   end
   if col >= 1
     j = 0
-    until j + 1 == col
-      payload_p2 = get_player2_payload_col(array, j)
-      if compare_payload(payload_compare, payload_p2) == true
+    begin
+      payp2 = get_player2_payload_col(ary, j)
+      if compare_payload(pay_comp, payp2) == true
         return true
       end
       j += 1
-    end
+    end while j < col
   end
   return false
 end
 
-def get_player2_payload_col(array, col)
-  payload_array = []
+def get_player2_payload_col(ary, col)
+  pay_ary = []
   i = 0
-  until i == array.length #why not i + 1?
-    payload = array[i][col]
-    payload_p2 = payload[1]
-    payload_array << payload_p2
+  until i == ary.length do #why not i + 1?
+    pay = ary[i][col]
+    payp2 = pay[1]
+    pay_ary << payp2
     i += 1
   end
-  payload_array
+  pay_ary
 end
 
-def get_player1_payload_row(array, row)
-  payload_array = Array.new
+def get_player1_payload_row(ary, row)
+  pay_ary = []
   i = 0
-  until i == array.length
-    payload = array[row][i]
-    payload_p1 = payload[0]
-    payload_array << payload_p1
+  until i == ary.length do
+    pay = ary[row][i]
+    payp1 = pay[0]
+    pay_ary << payp1
     i += 1
   end
-  payload_array
+  pay_ary
 end
 
-def get_player1_payload(array)
-  payload_array = Array.new
+def get_player1_payload(ary)
+  pay_ary = []
   i = 0
   j = 0
   begin
     begin
-      payload = array[i][j]
-      payload_p1 = payload[0]
-      payload_array << payload_p1
+      pay = ary[i][j]
+      payp1 = pay[0]
+      pay_ary << payp1
       j +=1
-    end while j < array[i].length
+    end while j < ary[i].length
     i += 1
     j = 0
-  end while i < array.length
-  payload_array
+  end while i < ary.length
+  pay_ary
 end
         
-def get_player2_payload(array)
-  payload_array = Array.new
+def get_player2_payload(ary)
+  pay_ary = []
   j = 0
   i = 0
   begin
     begin
-      payload = array[i][j]
-      payload_p2 = payload[1]
-      payload_array << payload_p2
+      pay = ary[i][j]
+      payp2 = pay[1]
+      pay_ary << payp2
       j += 1
-    end while j < array[i].length
+    end while j < ary[i].length
     i += 1
     j = 0
-  end while i < array.length
-  payload_array
+  end while i < ary.length
+  pay_ary
 end
 
 def compare_payload(pay1, pay2)
   count = 0
   i = 0
-  until i == pay1.length
+  until i == pay1.length do
     if compare_to(pay1[i], pay2[i]) == -1
       count += 1
     end
