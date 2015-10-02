@@ -5,10 +5,16 @@ require "test/unit"
 
 class TestGamePort < Test::Unit::TestCase 
 
-	def test_iterate_array_2_by_2_array
+	def test_iterate_array
+		ary = [[[0,1],[2,3],[1,20]], [[2,3],[1,1],[3,20]], [[1,1],[5,3],[2,20]]]
+		val = [[[1,20]], [[3,20]], [[2,20]]]
+    assert_equal(val , iterate_array(ary, 2))
+	end
+	
+  def test_iterate_array_2_by_2_array
 		ary = [[[0,1],[2,3]],[[2,3],[3,1]]]
 		val = [[[2,3],[3,1]]]
-    assert_equal(val , iterate_array2(ary, 1))
+    assert_equal(val, iterate_array2(ary, 1))
 	end
 	
 	def test_iterate_array2_3_by_3_array
@@ -24,12 +30,6 @@ class TestGamePort < Test::Unit::TestCase
 	end
 	
 =begin
-	def test_iterate_array
-		ary = [[[0,1],[2,3],[1,20]], [[2,3],[1,1],[3,20]], [[1,1],[5,3],[2,20]]]
-		val = [[[1,20]], [[3,20]], [[2,20]]]
-    assert_equal(val , iterate_array(ary, 2))
-	end
-
 	def test_iterate_array_fail
 		ary = [[[0,1],[2,3],[1,20]], [[2,3],[1,1],[3,20]], [[1,1],[5,3],[2,20]]]
 		val = [[[0,1],[2,3]], [[2,3],[1,1]], [[1,1],[5,3]]]

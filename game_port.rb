@@ -3,14 +3,22 @@
 #to do
 def iterate_array(array, player)
 	col = 0
-	mark_for_delete = []
+	mfd = []
 	begin
 	  val = player2_is_strongly_dominated(array, col)
 		if val == true
-		  mark_for_delete << col
+		  mfd << col
 		end
 	col += 1
 	end while col + 1 < array[0].length
+	new_array = []
+	i = 0
+  begin
+    a = array[i].select { |item| mfd.include?(array[i].index(item)) == false }
+    new_array << a
+    i += 1
+  end while i + 1 <= array.length
+  new_array
 end
 
 def iterate_array2(array, player)
@@ -23,7 +31,7 @@ def iterate_array2(array, player)
 		end
 	row += 1
 	end while row + 1 <= array.length
-	x = array.select { |x| mark_for_delete.include?(array.index(x)) == false}
+	ary = array.select { |x| mark_for_delete.include?(array.index(x)) == false }
 end
 
 #to do
@@ -186,3 +194,7 @@ def compare_to(a, b)
   end
   return 0
 end
+
+array = [[[4,6],[0,0]],[[7,4],[0,0]]]
+val = iterate_array(array, 1)
+puts "val = #{val}"
