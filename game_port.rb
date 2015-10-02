@@ -1,6 +1,5 @@
 #!/usr/bin/ruby
 
-#to do
 def iterate_array(array, player)
 	col = 0
 	mfd = []
@@ -34,7 +33,6 @@ def iterate_array2(array, player)
 	ary = array.select { |x| mark_for_delete.include?(array.index(x)) == false }
 end
 
-#to do
 def finish_array(array, player)
 	array = iterate_array(array, player)
 	player = get_next_player_turn(player)
@@ -66,14 +64,14 @@ end
 def player1_is_strongly_dominated(array, row)
   payload_compare = get_player1_payload_row(array, row)
   i = row
-  if row < array.length - 1
+  if row + 1 < array.length
     begin
 	    payload_p1 = get_player1_payload_row(array, i+1)
 		  if compare_payload(payload_compare, payload_p1) == true
 		    return true
 		  end
 		  i += 1
-    end while i < array.length - 1
+    end while i + 1 < array.length 
   end
   if row >= 1
     j = 0
@@ -91,14 +89,14 @@ end
 def player2_is_strongly_dominated(array, col)
   payload_compare = get_player2_payload_col(array, col)
   i = col
-  if col < array.length - 1
+  if col + 1 < array.length
     begin
 	    payload_p2 = get_player2_payload_col(array, i + 1)
 	    if compare_payload(payload_compare, payload_p2) == true
 		    return true
 		  end
 		i += 1
-	  end while i < array.length - 1
+	  end while i + 1< array.length
   end
   if col >= 1
     j = 0
@@ -194,7 +192,3 @@ def compare_to(a, b)
   end
   return 0
 end
-
-array = [[[4,6],[0,0]],[[7,4],[0,0]]]
-val = iterate_array(array, 1)
-puts "val = #{val}"
