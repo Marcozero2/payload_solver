@@ -58,7 +58,7 @@ end
 # * *Returns* :
 #   - an integer enum for next player
 def get_next_player_turn(player)
-  if curr_player % 2 == 0
+  if player % 2 == 0
     return 1
   else
     return 2
@@ -243,13 +243,11 @@ end
 #   - an integer enum for next player
 def compare_payload(pay1, pay2)
   count = 0
-  i = 0
-  until i == pay1.length do
+  pay1.each_index.select{ |i|  
     if compare_to(pay1[i], pay2[i]) == -1
       count += 1
     end
-    i += 1
-  end
+  }
   if count >= pay1.length
     return true
   end
