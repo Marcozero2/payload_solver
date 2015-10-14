@@ -196,19 +196,13 @@ end
 # * *Returns* :
 #   - an array with all the payloads of player 1 for an array
 def get_player1_payload(ary)
-  pay_ary = []
-  i = 0
-  j = 0
-  begin
-    begin
-      pay = ary[i][j]
-      payp1 = pay[0]
-      pay_ary << payp1
-      j +=1
-    end while j < ary[i].length
-    i += 1
-    j = 0
-  end while i < ary.length
+    pay_ary = []
+    ary.each { |row|
+      row.each { |col|
+        payp1 = col[0]
+        pay_ary << payp1
+    }
+  }
   pay_ary
 end
   
@@ -243,7 +237,7 @@ end
 #   - an integer enum for next player
 def compare_payload(pay1, pay2)
   count = 0
-  pay1.each_index.select{ |i|  
+  pay1.each_index.select{ |i|
     if compare_to(pay1[i], pay2[i]) == -1
       count += 1
     end
