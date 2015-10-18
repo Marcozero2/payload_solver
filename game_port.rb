@@ -91,26 +91,14 @@ end
 #   - true if selected row is dominated by any of player 1's other strategies, false otherwise
 def player1_is_strongly_dominated(ary, row)
   pay_comp = get_player1_payload_row(ary, row)
-  i = row
-  if row + 1 < ary.length
-    until i + 1 == ary.length do
-      payp1 = get_player1_payload_row(ary, i + 1)
+  ary.each_index.select { |i|
+    if i != row
+      payp1 = payp1 = get_player1_payload_row(ary, i)
       if compare_payload(pay_comp, payp1) == true
         return true
       end
-      i += 1
     end
-  end
-  if row >= 1
-    j = 0
-    until j > row do
-      payp1 = get_player1_payload_row(ary, j)
-      if compare_payload(pay_comp, payp1) == true
-        return true
-      end
-      j += 1
-    end
-  end
+  }
   false
 end
 
@@ -122,26 +110,14 @@ end
 #   - true if selected row is dominated by any of player 2's other strategies, false otherwise
 def player2_is_strongly_dominated(ary, col)
   pay_comp = get_player2_payload_col(ary, col)
-  i = col
-  if col + 1 < ary.length #check first half
-    until i + 1 == ary.length do
-      payp2 = get_player2_payload_col(ary, i + 1)
+  ary.each_index.select { |i|
+    if i != col
+      payp2 = get_player2_payload_col(ary, i)
       if compare_payload(pay_comp, payp2) == true
         return true
       end
-    i += 1
     end
-  end
-  if col >= 1
-    j = 0
-    begin #check second half
-      payp2 = get_player2_payload_col(ary, j)
-      if compare_payload(pay_comp, payp2) == true
-        return true
-      end
-      j += 1
-    end while j < col
-  end
+  }
   false
 end
 
