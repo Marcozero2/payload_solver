@@ -7,7 +7,6 @@
 # * *Returns* :
 #   - a new array with the any dominated stratgies of player 2 removed
 def iterate_array(ary, player)
-  col = 0
   mfd = [] #marked for delete
   ary[0].each_index.select { |col|
     val = player2_is_strongly_dominated(ary, col)
