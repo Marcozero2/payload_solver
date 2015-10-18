@@ -8,21 +8,18 @@
 #   - a new array with the any dominated stratgies of player 2 removed
 def iterate_array(ary, player)
   col = 0
-  mfd = []
-  until col == ary[0].length do
+  mfd = [] #marked for delete
+  ary[0].each_index.select { |col|
     val = player2_is_strongly_dominated(ary, col)
     if val == true
       mfd << col
     end
-    col += 1
-  end
+  }
   new_ary = []
-  i = 0
-  until i == ary.length do
-    a = ary[i].select { |item| mfd.include?(ary[i].index(item)) == false }
-    new_ary << a
-    i += 1
-  end
+  ary.each_index.select{ |i|
+    elem = ary[i].select { |item| mfd.include?(ary[i].index(item)) == false } #go to each item in the array, and if it exist in marked for delete, do not add it into the new array
+    new_ary << elem
+  }
   new_ary
 end
 
@@ -33,15 +30,13 @@ end
 # * *Returns* :
 #   - an array with the any dominated stratgies of player 1 removed
 def iterate_array2(ary, player)
-  row = 0
   mfd = []
-  until row == ary.length do
+  ary.each_index.select { |row|
     val = player1_is_strongly_dominated(ary, row)
     if val == true
       mfd << row
     end
-  row += 1
-  end
+  }
   ary = ary.select { |x| mfd.include?(ary.index(x)) == false }
 end
 
@@ -60,9 +55,8 @@ end
 def get_next_player_turn(player)
   if player % 2 == 0
     return 1
-  else
-    return 2
   end
+  2
 end
 
 # removes a row in a array
@@ -83,11 +77,9 @@ end
 # * *Returns* :
 #   - array with a column removed
 def delete_col(ary, col)
-  i = 0
-  until i == ary.length do
+  ary.each_index.select { |i|
     ary[i].delete_at(col)
-    i += 1
-  end
+  }
   ary
 end
 
@@ -119,7 +111,7 @@ def player1_is_strongly_dominated(ary, row)
       j += 1
     end
   end
-return false
+  false
 end
 
 # returns a boolean indicating a particular column is dominated by any of the other columns of player 2
@@ -131,7 +123,7 @@ end
 def player2_is_strongly_dominated(ary, col)
   pay_comp = get_player2_payload_col(ary, col)
   i = col
-  if col + 1 < ary.length
+  if col + 1 < ary.length #check first half
     until i + 1 == ary.length do
       payp2 = get_player2_payload_col(ary, i + 1)
       if compare_payload(pay_comp, payp2) == true
@@ -142,7 +134,7 @@ def player2_is_strongly_dominated(ary, col)
   end
   if col >= 1
     j = 0
-    begin
+    begin #check second half
       payp2 = get_player2_payload_col(ary, j)
       if compare_payload(pay_comp, payp2) == true
         return true
@@ -150,7 +142,7 @@ def player2_is_strongly_dominated(ary, col)
       j += 1
     end while j < col
   end
-  return false
+  false
 end
 
 # returns an array of all the payloads of player 2 in an array for a particular column
@@ -161,13 +153,9 @@ end
 #   - an array with the payoffs of player 2 for a column
 def get_player2_payload_col(ary, col)
   pay_ary = []
-  i = 0
-  until i == ary.length do #why not i + 1?
-    pay = ary[i][col]
-    payp2 = pay[1]
-    pay_ary << payp2
-    i += 1
-  end
+  ary.each_index.select{ |i|
+    pay_ary << ary[i][col][1]
+  }
   pay_ary
 end
 
@@ -179,13 +167,9 @@ end
 #   - an array with the payoffs of player 1 for a row
 def get_player1_payload_row(ary, row)
   pay_ary = []
-  i = 0
-  until i == ary.length do
-    pay = ary[row][i]
-    payp1 = pay[0]
-    pay_ary << payp1
-    i += 1
-  end
+  ary.each_index.select{ |i|
+    pay_ary << ary[row][i][0]
+  }
   pay_ary
 end
 
@@ -200,6 +184,7 @@ def get_player1_payload(ary)
     ary.each { |row|
       row.each { |col|
         payp1 = col[0]
+        puts "payp1 = #{payp1}"
         pay_ary << payp1
     }
   }
@@ -214,18 +199,13 @@ end
 #   - an array with all the payloads of player 2 for an array
 def get_player2_payload(ary)
   pay_ary = []
-  j = 0
-  i = 0
-  begin
-    begin
-      pay = ary[i][j]
-      payp2 = pay[1]
+  ary.each { |row|
+    row.each { |col|
+      payp2 = col[1]
+      puts "payp2 = #{payp2}"
       pay_ary << payp2
-      j += 1
-    end while j < ary[i].length
-    i += 1
-    j = 0
-  end while i < ary.length
+    }
+  }
   pay_ary
 end
 
@@ -245,7 +225,7 @@ def compare_payload(pay1, pay2)
   if count >= pay1.length
     return true
   end
-  return false
+  false
 end
 
 # returns an integer giving the relative value of one item compared to another item
@@ -260,5 +240,5 @@ def compare_to(a, b)
   elsif (a < b)
     return -1
   end
-  return 0
+  0
 end
