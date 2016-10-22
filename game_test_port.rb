@@ -140,7 +140,7 @@ class TestGamePort < Test::Unit::TestCase
   end
 
   def test_player1_is_strongly_dominated_3_by_3_array_col_1
-    ary = [[[5,1],[3,1],[5,1]], [[4,1],[2,1],[0,1]], [[4,1],[3,1],[4,1]]]
+    
     assert_equal(true, player1_is_strongly_dominated(ary, 1))
   end 
    
