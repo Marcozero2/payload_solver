@@ -30,10 +30,24 @@ class GameTest < Test::Unit::TestCase
     assert_equal(val, game.getPlayer1Payload())
   end
   
-def test_getPlayer2Payload
+  def test_getPlayer2Payload
     ary = [[[0,1],[2,3],[1,0]], [[2,3],[1,1],[3,0]], [[1,1],[5,3],[2,0]]]
     val = [1, 3, 0, 3, 1, 0, 1, 3, 0]
     game = Game.new(ary)
     assert_equal(val, game.getPlayer2Payload())
+  end
+  
+  def test_lessThan
+    ary = [[[0,1],[2,3],[1,20]], [[2,3],[1,1],[3,20]], [[1,1],[5,3],[2,20]]]
+    game = Game.new(ary)
+    assert_equal(true, game.lessThan(1,5))
+    assert_equal(false, game.lessThan(2,0))
+  end
+  
+  def test_lessThan
+    ary = [[[0,1],[2,3],[1,20]], [[2,3],[1,1],[3,20]], [[1,1],[5,3],[2,20]]]
+    game = Game.new(ary)
+    assert_equal(true, game.equals(1,1))
+    assert_equal(false, game.equals(2,0))
   end
 end
