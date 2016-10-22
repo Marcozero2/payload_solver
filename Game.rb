@@ -61,6 +61,29 @@ class Game
     @ary[0].length
   end
   
+  def iterateP1Payload
+    rows = []
+    r = 0
+    rowLength = getRowLength
+    while r <= @ary.length
+      rows << @payloadP1[r]
+      r += rowLength
+    end
+    rows << @payloadP1[r]
+    rows
+  end
+  
+  def iterateP2Payload
+    cols = []
+    r = 0
+    colLength = getColLength
+    while r < colLength
+      cols << @payloadP2[r]
+      r += 1
+    end
+    cols
+  end
+  
   def isPlayer1StronglyDominated
     
   end
