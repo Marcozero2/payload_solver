@@ -17,12 +17,6 @@ class GameTest < Test::Unit::TestCase
     assert_equal(2, game.player())
   end
   
-  def test_compareTo
-    ary = [[[0,1],[2,3],[1,20]], [[2,3],[1,1],[3,20]], [[1,1],[5,3],[2,20]]]
-    game = Game.new(ary)
-    assert_equal(-2, game.compareTo(2, 4))
-  end
-  
   def test_getPlayer1Payload
     ary = [[[0,1],[2,3],[1,0]], [[2,3],[1,1],[3,0]], [[1,1],[5,3],[2,0]]]
     val = [0, 2, 1, 2, 1, 3, 1, 5, 2]
@@ -37,6 +31,12 @@ class GameTest < Test::Unit::TestCase
     assert_equal(val, game.getPlayer2Payload())
   end
   
+  def test_compareTo
+    ary = [[[0,1],[2,3],[1,20]], [[2,3],[1,1],[3,20]], [[1,1],[5,3],[2,20]]]
+    game = Game.new(ary)
+    assert_equal(-2, game.compareTo(2, 4))
+  end
+  
   def test_lessThan
     ary = [[[0,1],[2,3],[1,20]], [[2,3],[1,1],[3,20]], [[1,1],[5,3],[2,20]]]
     game = Game.new(ary)
@@ -44,10 +44,23 @@ class GameTest < Test::Unit::TestCase
     assert_equal(false, game.lessThan(2,0))
   end
   
-  def test_lessThan
+  def test_equals
     ary = [[[0,1],[2,3],[1,20]], [[2,3],[1,1],[3,20]], [[1,1],[5,3],[2,20]]]
     game = Game.new(ary)
     assert_equal(true, game.equals(1,1))
     assert_equal(false, game.equals(2,0))
   end
+  
+  def test_getRowLength
+    ary = [[[0,1],[2,3],[1,20]], [[2,3],[1,1],[3,20]]]
+    game = Game.new(ary)
+    assert_equal(2, game.getRowLength())
+  end
+  
+  def test_getColLength
+    ary = [[[0,1],[2,3],[1,20]], [[2,3],[1,1],[3,20]]]
+    game = Game.new(ary)
+    assert_equal(3, game.getColLength())
+  end
+  
 end

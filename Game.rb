@@ -21,18 +21,18 @@ class Game
       row.each { |col|
         payloadAry << col[0]
       }
-  }
-  payloadAry
+    }
+    payloadAry
   end
   
   def getPlayer2Payload
-      payloadAry = []
-      @ary.each { |row|
-        row.each { |col|
-          payloadAry << col[1]
-        }
+    payloadAry = []
+    @ary.each { |row|
+      row.each { |col|
+        payloadAry << col[1]
+      }
     }
-  payloadAry
+    payloadAry
   end
   
   def compareTo(a, b)
@@ -53,17 +53,16 @@ class Game
     false
   end
   
-end
-
-def player1_is_strongly_dominated(ary, row)
-  pay_comp = get_player1_payload_row(ary, row)
-  ary.each_index.select { |i|
-    if i != row
-      payp1 = payp1 = get_player1_payload_row(ary, i)
-      if compare_payload(pay_comp, payp1) == true
-        return true
-      end
-    end
-  }
-  false
+  def getRowLength
+    @ary.length
+  end
+  
+  def getColLength
+    @ary[0].length
+  end
+  
+  def isPlayer1StronglyDominated
+    
+  end
+  
 end
