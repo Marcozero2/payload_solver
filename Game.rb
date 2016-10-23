@@ -62,30 +62,60 @@ class Game
   end
   
   def iterateP1Payload
-    rows = []
-    r = 0
+    i = 0
+    ary = []
     rowLength = getRowLength
-    while r <= @ary.length
-      rows << @payloadP1[r]
-      r += rowLength
+    while i < rowLength
+      ary << compareP1Payload(i)
+      i += 1
     end
-    rows << @payloadP1[r]
-    rows
+    ary
   end
   
   def iterateP2Payload
+    i = 0
+    ary = []
+    colLength = getColLength
+    while i < colLength
+      ary << compareP2Payload(i)
+      i += 1
+    end
+    ary
+  end
+  
+  def compareP1Payload(row)
+    rows = []
+    r = 0
+    rowLength = getRowLength
+    while r < @payloadP1.length
+      rows << @payloadP1[r + row]
+      r += rowLength
+    end
+    rows
+  end
+  
+  def compareP2Payload(col)
     cols = []
     r = 0
     colLength = getColLength
     while r < colLength
-      cols << @payloadP2[r]
+      cols << @payloadP2[r + (col * colLength)]
       r += 1
     end
     cols
   end
   
-  def isPlayer1StronglyDominated
-    
+  def getMaxArrayofArrays(ary)
+    maxAry = []
+    ary.length.times do |i|
+      max = ary[i].max
+      maxAry << ary[i].find_index(max)
+    end
+    maxAry
+  end
+  
+  def areItemsAllEqual(ary)
+    ary.all? {|x| x == ary[0]}
   end
   
 end
