@@ -9,11 +9,11 @@ class GameTest < Test::Unit::TestCase
     ary = [[[0,1],[2,3],[1,20]], [[2,3],[1,1],[3,20]], [[1,1],[5,3],[2,20]]]
     game = Game.new(ary)
     assert_equal(1, game.player())
-    game.changePlayer()
+    game.changePlayer
     assert_equal(2, game.player())
-    game.changePlayer()
+    game.changePlayer
     assert_equal(1, game.player())
-    game.changePlayer()
+    game.changePlayer
     assert_equal(2, game.player())
   end
   
@@ -109,7 +109,6 @@ class GameTest < Test::Unit::TestCase
     ary = [[[0,1],[2,3],[1,20]], [[2,3],[1,1],[3,20]], [[1,1],[5,3],[2,20]]]
     val = [[0, 2, 1], [2, 1, 5], [1, 3, 2]]
     game = Game.new(ary)
-    game.isIndexStronglyDominated(val)
     assert_equal(val, game.iterateP1Payload)
   end
   
@@ -120,19 +119,101 @@ class GameTest < Test::Unit::TestCase
     assert_equal(val, game.iterateP2Payload)
   end
     
-  def test_isIndexStronglyDominated
+  def test_getMaxArrayofArrays
     ary = [[[0,1],[2,3],[1,20]], [[2,3],[1,1],[3,20]], [[1,1],[5,3],[2,20]]]
     col = [[1, 3, 20], [3, 1, 20], [1, 3, 20]]
     val = [2, 2, 2]
     game = Game.new(ary)
-    assert_equal(val, game.getMaxInArrayofArrays(col))
+    assert_equal(val, game.getMaxArrayofArrays(col))
   end
   
-def test_isIndexStronglyDominated2
+  def test_isRowIndexDominatedRow0
     ary = [[[0,1],[2,3],[1,20]], [[2,3],[1,1],[3,20]], [[1,1],[5,3],[2,20]]]
-    col = [[1, 20, 20], [3, 1, 20], [1, 3, 20]]
-    val = [2, 2, 2]
+    val = [[1, 3, 20], [3, 1, 20], [1, 3, 20]]
     game = Game.new(ary)
-    assert_equal(val, game.isIndexStronglyDominated(col))
+    assert_equal(true, game.isRowIndexDominated(0))
+  end
+  
+  def test_isRowIndexDominatedRow1
+    ary = [[[0,1],[2,3],[1,20]], [[2,3],[1,1],[3,20]], [[1,1],[5,3],[2,20]]]
+    val = [[1, 3, 20], [3, 1, 20], [1, 3, 20]]
+    game = Game.new(ary)
+    assert_equal(true, game.isRowIndexDominated(1))
+  end
+  
+  def test_isRowIndexDominatedRow2
+    ary = [[[0,1],[2,3],[1,20]], [[2,3],[1,1],[3,20]], [[1,1],[5,3],[2,20]]]
+    val = [[1, 3, 20], [3, 1, 20], [1, 3, 20]]
+    game = Game.new(ary)
+    assert_equal(false, game.isRowIndexDominated(2))
+  end
+  
+  def test_isRowIndexDominatedCol0
+    ary = [[[0,1],[2,3],[1,20]], [[2,3],[1,1],[3,20]], [[1,1],[5,3],[2,20]]]
+    val = [[1, 3, 20], [3, 1, 20], [1, 3, 20]]
+    game = Game.new(ary)
+    assert_equal(true, game.isColIndexDominated(0))
+  end
+  
+  def test_isRowIndexDominatedCol1
+    ary = [[[0,1],[2,3],[1,20]], [[2,3],[1,1],[3,20]], [[1,1],[5,3],[2,20]]]
+    val = [[1, 3, 20], [3, 1, 20], [1, 3, 20]]
+    game = Game.new(ary)
+    assert_equal(false, game.isColIndexDominated(1))
+  end
+  
+  def test_isRowIndexDominatedCol2
+    ary = [[[0,1],[2,3],[1,20]], [[2,3],[1,1],[3,20]], [[1,1],[5,3],[2,20]]]
+    val = [[1, 3, 20], [3, 1, 20], [1, 3, 20]]
+    game = Game.new(ary)
+    assert_equal(false, game.isColIndexDominated(2))
+  end
+  
+  def test_removeRowIndexRow0
+    ary = [[[0,1],[2,3],[1,20]], [[2,3],[1,1],[3,20]], [[1,1],[5,3],[2,20]]]
+    val = [[[2,3],[1,1],[3,20]], [[1,1],[5,3],[2,20]]]
+    game = Game.new(ary)
+    game.removeRowIndex(0)
+    assert_equal(val, game.ary)
+  end
+
+  def test_removeRowIndexRow1
+    ary = [[[0,1],[2,3],[1,20]], [[2,3],[1,1],[3,20]], [[1,1],[5,3],[2,20]]]
+    val = [[[0,1],[2,3],[1,20]], [[1,1],[5,3],[2,20]]]
+    game = Game.new(ary)
+    game.removeRowIndex(1)
+    assert_equal(val, game.ary)
+  end
+  
+  def test_removeRowIndexRow2
+    ary = [[[0,1],[2,3],[1,20]], [[2,3],[1,1],[3,20]], [[1,1],[5,3],[2,20]]]
+    val = [[[0,1],[2,3],[1,20]], [[2,3],[1,1],[3,20]]]
+    game = Game.new(ary)
+    game.removeRowIndex(2)
+    assert_equal(val, game.ary)
+  end
+  
+  def test_removeColIndexCol0
+    ary = [[[0,1],[2,3],[1,20]], [[2,3],[1,1],[3,20]], [[1,1],[5,3],[2,20]]]
+    val = [[[2,3],[1,20]], [[1,1],[3,20]], [[5,3],[2,20]]]
+    game = Game.new(ary)
+    game.removeColIndex(0)
+    assert_equal(val, game.ary)
+  end
+  
+  def test_removeColIndexCol1
+    ary = [[[0,1],[2,3],[1,20]], [[2,3],[1,1],[3,20]], [[1,1],[5,3],[2,20]]]
+    val = [[[0,1],[1,20]], [[2,3],[3,20]], [[1,1],[2,20]]]
+    game = Game.new(ary)
+    game.removeColIndex(1)
+    assert_equal(val, game.ary)
+  end
+  
+  def test_removeColIndexCol2
+    ary = [[[0,1],[2,3],[1,20]], [[2,3],[1,1],[3,20]], [[1,1],[5,3],[2,20]]]
+    val = [[[0,1],[2,3]], [[2,3],[1,1]], [[1,1],[5,3]]]
+    game = Game.new(ary)
+    game.removeColIndex(2)
+    assert_equal(val, game.ary)
   end
 end
