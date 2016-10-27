@@ -259,6 +259,3 @@ def isRowIndexWeaklyDominated(index)
     end
   end
 end
-
-ary = ARGV.first
-game.new(argv)
